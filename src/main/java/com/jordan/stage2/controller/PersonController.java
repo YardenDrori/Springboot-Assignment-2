@@ -1,9 +1,9 @@
 package com.jordan.stage2.controller;
 
 import jakarta.validation.Valid;
-import com.jordan.stage1.dto.StudentDto;
-import com.jordan.stage1.response.StandardResponse;
-import com.jordan.stage1.service.StudentService;
+import com.jordan.stage2.dto.PersonDto;
+import com.jordan.stage2.response.StandardResponse;
+import com.jordan.stage2.service.PersonService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,50 +13,50 @@ import java.net.URI;
 import java.util.List;
 
 /**
- * REST controller for student operations
+ * REST controller for Person operations
  * The controller works directly with DTOs and delegates to the service layer
  * for business logic and data conversion
  */
 @RestController
-@RequestMapping("/students")
-public class StudentController {
+@RequestMapping("/Persons")
+public class PersonController {
 
-    private final StudentService studentService;
+    private final PersonService PersonService;
 
-    public StudentController(StudentService studentService) {
-        this.studentService = studentService;
+    public PersonController(PersonService PersonService) {
+        this.PersonService = PersonService;
     }
 
     /**
-     * Get all students
+     * Get all Persons
      * Returns ResponseEntity with StandardResponse and 200 OK status
      */
     @GetMapping()
-    public ResponseEntity<StandardResponse> getAllStudents() {
-        List<StudentDto> students = studentService.getAllStudents();
-        StandardResponse response = new StandardResponse("success", students, null);
+    public ResponseEntity<StandardResponse> getAllPersons() {
+        List<PersonDto> Persons = PersonService.getAllPersons();
+        StandardResponse response = new StandardResponse("success", Persons, null);
         return ResponseEntity.ok(response);
     }
 
     /**
-     * Get a student by ID
+     * Get a Person by ID
      * Returns ResponseEntity with StandardResponse and 200 OK status
      */
     @GetMapping("/{id}")
-    public ResponseEntity<StandardResponse> getStudent(@PathVariable Long id) {
-        StudentDto student = studentService.getStudentById(id);
-        StandardResponse response = new StandardResponse("success", student, null);
+    public ResponseEntity<StandardResponse> getPerson(@PathVariable Long id) {
+        PersonDto Person = PersonService.getPersonById(id);
+        StandardResponse response = new StandardResponse("success", Person, null);
         return ResponseEntity.ok(response);
     }
 
     /**
-     * Add a new student
-     * Uses @Valid to validate a student according to Jakarta Validation constraints
+     * Add a new Person
+     * Uses @Valid to validate a Person according to Jakarta Validation constraints
      * Returns ResponseEntity with StandardResponse and 201 Created status with location header
      */
     @PostMapping()
-    public ResponseEntity<StandardResponse> addStudent(@Valid @RequestBody StudentDto studentDto) {
-        StudentDto added = studentService.addStudent(studentDto);
+    public ResponseEntity<StandardResponse> addPerson(@Valid @RequestBody PersonDto PersonDto) {
+        PersonDto added = PersonService.addPerson(PersonDto);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -69,27 +69,27 @@ public class StudentController {
     }
 
     /**
-     * Update a student
-     * Uses @Valid to validate a student according to Jakarta Validation constraints
+     * Update a Person
+     * Uses @Valid to validate a Person according to Jakarta Validation constraints
      * Returns ResponseEntity with StandardResponse and 200 OK status
      * 
      * Note: The path variable ID identifies the resource to update, even though
      * the ID may also be present in the request body
      */
     @PutMapping("/{id}")
-    public ResponseEntity<StandardResponse> updateStudent(@Valid @RequestBody StudentDto studentDto, @PathVariable Long id) {
-        StudentDto updated = studentService.updateStudent(studentDto, id);
+    public ResponseEntity<StandardResponse> updatePerson(@Valid @RequestBody PersonDto PersonDto, @PathVariable Long id) {
+        PersonDto updated = PersonService.updatePerson(PersonDto, id);
         StandardResponse response = new StandardResponse("success", updated, null);
         return ResponseEntity.ok(response);
     }
 
     /**
-     * Delete a student
+     * Delete a Person
      * Returns 204 No Content status without a response body
      */
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteStudent(@PathVariable Long id) {
-        studentService.deleteStudent(id);
+    public void deletePerson(@PathVariable Long id) {
+        PersonService.deletePerson(id);
     }
 }

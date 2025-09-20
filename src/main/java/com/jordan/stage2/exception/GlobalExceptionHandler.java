@@ -48,8 +48,8 @@ public class GlobalExceptionHandler {
     /**
      * takes care of the exception when there's an ID mismatch, 400 Bad Request
      */
-    @ExceptionHandler(StudentIdAndIdMismatch.class)
-    public ResponseEntity<StandardResponse> handleIdMismatch(StudentIdAndIdMismatch ex, WebRequest request) {
+    @ExceptionHandler(PersonIdAndIdMismatch.class)
+    public ResponseEntity<StandardResponse> handleIdMismatch(PersonIdAndIdMismatch ex, WebRequest request) {
         Map<String, String> details = new HashMap<>();
         details.put("type", "ID Mismatch");
         details.put("message", ex.getMessage());

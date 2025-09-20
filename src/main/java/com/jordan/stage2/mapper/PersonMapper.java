@@ -1,49 +1,49 @@
 package com.jordan.stage2.mapper;
 
 
-import com.jordan.stage2.dto.StudentDto;
-import com.jordan.stage2.entity.Student;
+import com.jordan.stage2.dto.PersonDto;
+import com.jordan.stage2.entity.Person;
 import org.springframework.stereotype.Component;
 
 /**
  * This class is responsible for mapping between DTO objects and entities
  */
 @Component
-public class StudentMapper {
+public class PersonMapper {
 
     /**
-     * map StudentDto to Student
+     * map PersonDto to Person
      *
      * @param dto for conversion
-     * @return new Student entity
+     * @return new Person entity
      */
-    public Student toEntity(StudentDto dto) {
+    public Person toEntity(PersonDto dto) {
         if (dto == null) {
             return null;
         }
 
-        Student student = new Student();
-        student.setId(dto.getId());
-        student.setFirstName(dto.getFirstName());
-        student.setLastName(dto.getLastName());
-        student.setAge(dto.getAge());
-        student.setEmail(dto.getEmail());
+        Person Person = new Person();
+        Person.setId(dto.getId());
+        Person.setFirstName(dto.getFirstName());
+        Person.setLastName(dto.getLastName());
+        Person.setAge(dto.getAge());
+        Person.setEmail(dto.getEmail());
 
-        return student;
+        return Person;
     }
 
     /**
-     * map Student to StudentDto
+     * map Person to PersonDto
      * 
      * @param entity entity for conversion
-     * @return new StudentDto
+     * @return new PersonDto
      */
-    public StudentDto toDto(Student entity) {
+    public PersonDto toDto(Person entity) {
         if (entity == null) {
             return null;
         }
 
-        StudentDto dto = new StudentDto();
+        PersonDto dto = new PersonDto();
         dto.setId(entity.getId());
         dto.setFirstName(entity.getFirstName());
         dto.setLastName(entity.getLastName());
@@ -54,12 +54,12 @@ public class StudentMapper {
     }
 
     /**
-     * update the existing Student entity with the data from the DTO
+     * update the existing Person entity with the data from the DTO
      *
      * @param entity the entity to update
      * @param dto the DTO with the new data, if null, no update will be performed
      */
-    public void updateEntityFromDto(Student entity, StudentDto dto) {
+    public void updateEntityFromDto(Person entity, PersonDto dto) {
         if (entity == null || dto == null) {
             return;
         }

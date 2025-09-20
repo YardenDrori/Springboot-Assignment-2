@@ -1,7 +1,7 @@
 package com.jordan.stage2;
 
-import com.jordan.stage2.entity.Student;
-import com.jordan.stage2.repository.StudentRepository;
+import com.jordan.stage2.entity.Person;
+import com.jordan.stage2.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -9,25 +9,25 @@ import org.springframework.stereotype.Component;
 @Component
 public class DataInitializer implements CommandLineRunner {
 
-    private final StudentRepository studentRepository;
+    private final PersonRepository PersonRepository;
 
     @Autowired
-    public DataInitializer(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
+    public DataInitializer(PersonRepository PersonRepository) {
+        this.PersonRepository = PersonRepository;
     }
 
     @Override
     public void run(String... args) {
         // Check if there are already records in the database
-        if (studentRepository.count() == 0) {
+        if (PersonRepository.count() == 0) {
             // Create and save initial data
-            studentRepository.save(new Student(null, "John", "Doe", 21.5, "john.doe@example.com"));
-            studentRepository.save(new Student(null, "Jane", "Smith", 22.3, "jane.smith@example.com"));
-            studentRepository.save(new Student(null, "Alice", "Johnson", 20.7, "alice.johnson@example.com"));
-            studentRepository.save(new Student(null, "Bob", "Brown", 23.1, "bob.brown@example.com"));
-            studentRepository.save(new Student(null, "Charlie", "Davis", 22.8, "charlie.davis@example.com"));
+            PersonRepository.save(new Person(null, "John", "Doe", 21.5, "john.doe@example.com"));
+            PersonRepository.save(new Person(null, "Jane", "Smith", 22.3, "jane.smith@example.com"));
+            PersonRepository.save(new Person(null, "Alice", "Johnson", 20.7, "alice.johnson@example.com"));
+            PersonRepository.save(new Person(null, "Bob", "Brown", 23.1, "bob.brown@example.com"));
+            PersonRepository.save(new Person(null, "Charlie", "Davis", 22.8, "charlie.davis@example.com"));
 
-            System.out.println("Data initialization completed. Created 5 student records.");
+            System.out.println("Data initialization completed. Created 5 Person records.");
         } else {
             System.out.println("Database already contains records. Skipping initialization.");
         }

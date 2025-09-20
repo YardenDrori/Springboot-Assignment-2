@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class StudentDto {
+public class PersonDto {
     private Long id;
 
     @NotBlank(message = "First name is required")
