@@ -1,5 +1,6 @@
 package com.jordan.stage2.entity;
 
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -37,4 +38,12 @@ public class Person {
     @Email(message = "Email should be valid")
     @Column(unique = true, nullable = false, length = 100)
     private String email;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JoinTable(
+      name = "person_roles",
+      joinColumns = @JoinColumn(name = "person_id"),
+      inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private java.util.Set<Role> roles;
 }

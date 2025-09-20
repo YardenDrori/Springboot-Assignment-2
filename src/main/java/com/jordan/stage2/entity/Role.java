@@ -26,4 +26,7 @@ public class Role {
     @Size(max = 200, message = "Description must be up to 200 characters")
     @Column(name = "description", length = 200)
     private String description;
+
+    @ManyToMany(mappedBy = "roles")
+    private java.util.Set<Person> persons;
 }
