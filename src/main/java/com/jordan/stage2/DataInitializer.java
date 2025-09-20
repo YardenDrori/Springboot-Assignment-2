@@ -56,5 +56,6 @@ public class DataInitializer implements CommandLineRunner {
             System.out.println("Database already contains records. Skipping initialization.");
         }
 
+        
     }
 }
